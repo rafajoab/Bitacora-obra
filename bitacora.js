@@ -1,12 +1,12 @@
 // views/bitacora.js — línea de tiempo de avances agrupada por día.
-import * as db from '../db.js';
-import { state, setActiveProject } from '../store.js';
-import { pageHeader, mountHeader, esc, emptyState, actionSheet, objectURL, toast } from '../ui.js';
-import { icon } from '../icons.js';
+import * as db from './db.js';
+import { state, setActiveProject } from './store.js';
+import { pageHeader, mountHeader, esc, emptyState, actionSheet, objectURL, toast } from './ui.js';
+import { icon } from './icons.js';
 import { openEntrySheet, openDaySheet } from './registro.js';
-import { openViewer } from '../photos.js';
-import { calaOceanReefTemplate } from '../seed.js';
-import { todayISO, relDay, fmtShort, weatherSummary, catColor, debounce, cap, fmtLong, whereText, whatText } from '../utils.js';
+import { openViewer } from './photos.js';
+import { calaOceanReefTemplate } from './seed.js';
+import { todayISO, relDay, fmtShort, weatherSummary, catColor, debounce, cap, fmtLong, whereText, whatText } from './utils.js';
 
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const textOn = (hex) => {

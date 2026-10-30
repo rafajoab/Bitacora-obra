@@ -1,10 +1,10 @@
 // views/ajustes.js — apariencia, datos del informe, almacenamiento y respaldos.
-import * as db from '../db.js';
-import { state, saveSettings, loadState } from '../store.js';
-import { pageHeader, mountHeader, esc, toast, confirmDialog, actionSheet, fileReadySheet, bindSwitches, switchHTML, h } from '../ui.js';
-import { icon } from '../icons.js';
-import { buildBackup, backupName, importBackup } from '../export.js';
-import { fmtBytes, fmtShort, toISO } from '../utils.js';
+import * as db from './db.js';
+import { state, saveSettings, loadState } from './store.js';
+import { pageHeader, mountHeader, esc, toast, confirmDialog, actionSheet, fileReadySheet, bindSwitches, switchHTML, h } from './ui.js';
+import { icon } from './icons.js';
+import { buildBackup, backupName, importBackup } from './export.js';
+import { fmtBytes, fmtShort, toISO } from './utils.js';
 
 export const APP_VERSION = '1.1.0';
 
@@ -43,7 +43,7 @@ export async function render(root, rerender) {
       </div>
 
       <div class="card group-list mt-2">
-        ${row(`<span class="flex items-center gap-3">${ico('doc', '#A9050F')}<span class="leading-tight py-2">Logo en los informes PDF<span class="block text-[12px] text-label2">Archivo img/logo-empresa.png</span></span></span>${switchHTML('useLogo', s.useLogo)}`)}
+        ${row(`<span class="flex items-center gap-3">${ico('doc', '#A9050F')}<span class="leading-tight py-2">Logo en los informes PDF<span class="block text-[12px] text-label2">Archivo logo-empresa.png</span></span></span>${switchHTML('useLogo', s.useLogo)}`)}
       </div>
 
       <span class="label">Fotos</span>

@@ -1,19 +1,19 @@
 // views/informes.js — informes PDF y exportación CSV por periodo.
-import * as db from '../db.js';
-import { state } from '../store.js';
-import { pageHeader, mountHeader, esc, emptyState, toast, fileReadySheet, bindSwitches, switchHTML, h } from '../ui.js';
-import { icon } from '../icons.js';
-import { buildReportPDF } from '../report-pdf.js';
-import { buildCSV, csvName } from '../export.js';
-import { recompress } from '../photos.js';
-import { todayISO, addDays, startOfWeek, rainHours, fmtHours, slug, fromISO } from '../utils.js';
+import * as db from './db.js';
+import { state } from './store.js';
+import { pageHeader, mountHeader, esc, emptyState, toast, fileReadySheet, bindSwitches, switchHTML, h } from './ui.js';
+import { icon } from './icons.js';
+import { buildReportPDF } from './report-pdf.js';
+import { buildCSV, csvName } from './export.js';
+import { recompress } from './photos.js';
+import { todayISO, addDays, startOfWeek, rainHours, fmtHours, slug, fromISO } from './utils.js';
 
 let pdfLibPromise = null;
 function loadPdfLib() {
   if (window.PDFLib) return Promise.resolve(window.PDFLib);
   pdfLibPromise ??= new Promise((res, rej) => {
     const s = document.createElement('script');
-    s.src = 'vendor/pdf-lib.min.js';
+    s.src = 'pdf-lib.min.js';
     s.onload = () => res(window.PDFLib);
     s.onerror = () => { pdfLibPromise = null; rej(new Error('No se pudo cargar el motor PDF')); };
     document.head.append(s);
@@ -21,10 +21,10 @@ function loadPdfLib() {
   return pdfLibPromise;
 }
 
-/** Logo del encabezado (img/logo-empresa.png). Para usar otro, reemplaza ese archivo. */
+/** Logo del encabezado (logo-empresa.png). Para usar otro, reemplaza ese archivo. */
 async function loadLogo() {
   if (state.settings.useLogo === false) return null;
-  try { const r = await fetch('img/logo-empresa.png'); return r.ok ? await r.arrayBuffer() : null; } catch { return null; }
+  try { const r = await fetch('logo-empresa.png'); return r.ok ? await r.arrayBuffer() : null; } catch { return null; }
 }
 
 const PRESETS = () => {

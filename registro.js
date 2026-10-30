@@ -1,10 +1,10 @@
 // views/registro.js — formulario de registro diario (hoja modal) y clima del día.
-import * as db from '../db.js';
-import { state } from '../store.js';
-import { sheet, h, esc, toast, confirmDialog, chipGroup, bindChips, chipValue, objectURL, revokeScope } from '../ui.js';
-import { icon } from '../icons.js';
-import { compressPhoto, openViewer } from '../photos.js';
-import { todayISO, fmtShort, fmtLong, cap, WEATHER, hoursBetween, fmtHours, UNITS, activitiesFor, zonesFor, STEP_PCTS } from '../utils.js';
+import * as db from './db.js';
+import { state } from './store.js';
+import { sheet, h, esc, toast, confirmDialog, chipGroup, bindChips, chipValue, objectURL, revokeScope } from './ui.js';
+import { icon } from './icons.js';
+import { compressPhoto, openViewer } from './photos.js';
+import { todayISO, fmtShort, fmtLong, cap, WEATHER, hoursBetween, fmtHours, UNITS, activitiesFor, zonesFor, STEP_PCTS } from './utils.js';
 
 // ---------------------------------------------------------------
 // Sección de clima / condiciones del día (se reutiliza en 2 hojas)

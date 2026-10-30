@@ -1,10 +1,10 @@
 // views/proyectos.js — lista de obras, crear/editar/eliminar.
-import * as db from '../db.js';
-import { state, setActiveProject, refreshProjects } from '../store.js';
-import { pageHeader, mountHeader, esc, sheet, toast, confirmDialog, h, emptyState, bindSwitches } from '../ui.js';
-import { icon } from '../icons.js';
-import { calaOceanReefTemplate, blankProject } from '../seed.js';
-import { parseList, fmtShort } from '../utils.js';
+import * as db from './db.js';
+import { state, setActiveProject, refreshProjects } from './store.js';
+import { pageHeader, mountHeader, esc, sheet, toast, confirmDialog, h, emptyState, bindSwitches } from './ui.js';
+import { icon } from './icons.js';
+import { calaOceanReefTemplate, blankProject } from './seed.js';
+import { parseList, fmtShort } from './utils.js';
 
 export async function render(root, rerender, params) {
   await refreshProjects();

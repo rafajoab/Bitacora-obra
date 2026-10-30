@@ -3,11 +3,11 @@ import { openDB } from './db.js';
 import { state, loadState, applyTheme } from './store.js';
 import { takeScope, toast } from './ui.js';
 import { icon } from './icons.js';
-import { openEntrySheet } from './views/registro.js';
-import * as bitacora from './views/bitacora.js';
-import * as proyectos from './views/proyectos.js';
-import * as informes from './views/informes.js';
-import * as ajustes from './views/ajustes.js';
+import { openEntrySheet } from './registro.js';
+import * as bitacora from './bitacora.js';
+import * as proyectos from './proyectos.js';
+import * as informes from './informes.js';
+import * as ajustes from './ajustes.js';
 
 const ROUTES = { bitacora, proyectos, informes, ajustes };
 const TABS = [

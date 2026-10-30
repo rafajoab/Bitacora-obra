@@ -6,7 +6,7 @@ export const DEFAULT_SETTINGS = {
   author: '',               // Responsable que firma los informes
   company: '',              // Empresa que emite el informe
   stampPhotos: true,        // Sello de fecha/proyecto sobre las fotos
-  useLogo: true,            // Logo de la empresa en el encabezado del PDF (img/logo-empresa.png)
+  useLogo: true,            // Logo de la empresa en el encabezado del PDF (logo-empresa.png)
   photoMax: 1600,           // Lado máximo al guardar fotos (px)
   photoQuality: 0.72,       // Calidad JPEG al guardar
   lastBackup: null,         // Fecha del último respaldo

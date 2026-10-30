@@ -1,0 +1,19 @@
+{
+  "name": "Bitácora de Obra",
+  "short_name": "Bitácora",
+  "description": "Control diario de avances de obra con fotos, clima e informes PDF. 100% offline.",
+  "lang": "es",
+  "start_url": "./index.html#/bitacora",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B2545",
+  "theme_color": "#0B2545",
+  "categories": ["productivity", "business"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

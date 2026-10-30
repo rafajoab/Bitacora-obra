@@ -1,0 +1,140 @@
+/* ============================================================
+   FUENTE TAILWIND (v4). El navegador usa css/app.css (compilado).
+   Solo edita este archivo si vas a recompilar con Tailwind.
+   ============================================================ */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+  --color-navy: #0B2545;
+  --color-gold: #C9A227;
+  --color-steel: #8DA9C4;
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Colores semánticos tipo iOS que cambian con el modo oscuro */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-card: var(--c-card);
+  --color-card2: var(--c-card2);
+  --color-label: var(--c-label);
+  --color-label2: var(--c-label2);
+  --color-label3: var(--c-label3);
+  --color-sep: var(--c-sep);
+  --color-fill: var(--c-fill);
+  --color-tint: var(--c-tint);
+  --color-ontint: var(--c-ontint);
+  --color-danger: var(--c-danger);
+  --color-ok: var(--c-ok);
+  --color-bar: var(--c-bar);
+}
+
+:root {
+  --c-bg: #F2F2F7; --c-card: #FFFFFF; --c-card2: #F2F2F7;
+  --c-label: #0B1220; --c-label2: rgba(60,60,67,.62); --c-label3: rgba(60,60,67,.32);
+  --c-sep: rgba(60,60,67,.16); --c-fill: rgba(120,120,128,.12);
+  --c-tint: #0B2545; --c-ontint: #FFFFFF;
+  --c-danger: #FF3B30; --c-ok: #34C759; --c-bar: rgba(249,249,249,.84);
+  color-scheme: light;
+}
+.dark {
+  --c-bg: #000000; --c-card: #1C1C1E; --c-card2: #2C2C2E;
+  --c-label: #FFFFFF; --c-label2: rgba(235,235,245,.62); --c-label3: rgba(235,235,245,.3);
+  --c-sep: rgba(84,84,88,.6); --c-fill: rgba(118,118,128,.24);
+  --c-tint: #8DA9C4; --c-ontint: #0B2545;
+  --c-danger: #FF453A; --c-ok: #30D158; --c-bar: rgba(22,22,24,.82);
+  color-scheme: dark;
+}
+
+@layer base {
+  html, body { height: 100%; }
+  body {
+    @apply bg-bg text-label font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-y: none;
+  }
+  input, textarea, select { font-size: 16px; } /* evita el zoom de iOS */
+  button { cursor: pointer; -webkit-user-select: none; user-select: none; }
+}
+
+/* Utilidades propias (se pueden usar con @apply) */
+@utility press {
+  transition: transform .18s var(--ease-ios), opacity .18s;
+  &:active { transform: scale(.96); opacity: .75; }
+}
+@utility btn {
+  @apply press inline-flex items-center justify-center gap-2 rounded-xl px-4 h-12 font-semibold text-[17px];
+}
+
+@layer components {
+  /* Zonas seguras del iPhone (notch / barra de inicio) */
+  .safe-top    { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .pad-tabbar  { padding-bottom: calc(env(safe-area-inset-bottom) + 6.5rem); }
+  .sheet-pad   { padding-bottom: calc(env(safe-area-inset-bottom) + 1.25rem); }
+
+  .glass { background: var(--c-bar); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+  .hairline-b { box-shadow: inset 0 -0.5px 0 var(--c-sep); }
+  .hairline-t { box-shadow: inset 0 0.5px 0 var(--c-sep); }
+
+
+  .card  { @apply bg-card rounded-2xl; }
+  .group-list > * + * { box-shadow: inset 0 0.5px 0 var(--c-sep); }
+
+  .btn-primary { @apply btn bg-tint text-ontint; }
+  .btn-gold    { @apply btn bg-gold text-navy; }
+  .btn-soft    { @apply btn bg-fill text-tint; }
+  .btn-danger  { @apply btn bg-fill text-danger; }
+
+  .chip { @apply press inline-flex items-center gap-1.5 h-9 px-3.5 rounded-full text-[15px] font-medium bg-fill text-label whitespace-nowrap; }
+  .chip[aria-pressed="true"] { @apply bg-tint text-ontint; }
+
+  .field { @apply w-full bg-card rounded-xl px-3.5 py-3 text-[17px] text-label outline-none placeholder:text-label3; }
+  .field:focus { box-shadow: 0 0 0 2px var(--c-tint); }
+  .label { @apply block text-[13px] uppercase tracking-wide text-label2 px-1 mb-1.5 mt-5; }
+
+  .seg { @apply flex p-0.5 rounded-[10px] bg-fill; }
+  .seg > button { @apply flex-1 h-8 rounded-[8px] text-[14px] font-medium text-label transition-all duration-200; }
+  .seg > button[aria-pressed="true"] { @apply bg-card shadow-sm font-semibold; }
+  .dark .seg > button[aria-pressed="true"] { background: #636366; }
+
+  summary::-webkit-details-marker { display: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+
+  .switch { @apply relative w-[51px] h-[31px] rounded-full bg-fill transition-colors duration-200 shrink-0; }
+  .switch::after { content: ""; @apply absolute top-[2px] left-[2px] w-[27px] h-[27px] rounded-full bg-white shadow transition-transform duration-200; }
+  .switch[aria-checked="true"] { @apply bg-ok; }
+  .switch[aria-checked="true"]::after { transform: translateX(20px); }
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes view-in   { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes fade-in   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out  { to { opacity: 0; } }
+@keyframes sheet-in  { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes sheet-out { to { transform: translateY(100%); } }
+@keyframes pop-in    { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes toast-in  { from { opacity: 0; transform: translateY(-16px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes check-draw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.anim-view   { animation: view-in .32s var(--ease-ios) both; }
+.anim-fade   { animation: fade-in .25s ease both; }
+.anim-fadeout{ animation: fade-out .22s ease both; }
+.anim-sheet  { animation: sheet-in .42s var(--ease-ios) both; }
+.anim-sheetout { animation: sheet-out .3s var(--ease-ios) both; }
+.anim-pop    { animation: pop-in .28s var(--ease-ios) both; }
+.anim-toast  { animation: toast-in .35s var(--ease-ios) both; }
+.anim-check path { stroke-dasharray: 30; animation: check-draw .45s .1s ease-out both; }
+.spinner { width: 22px; height: 22px; border-radius: 9999px; border: 2.5px solid var(--c-fill); border-top-color: var(--c-tint); animation: spin .8s linear infinite; }
+.stagger > * { animation: view-in .35s var(--ease-ios) both; }
+.stagger > *:nth-child(2) { animation-delay: .03s; } .stagger > *:nth-child(3) { animation-delay: .06s; }
+.stagger > *:nth-child(4) { animation-delay: .09s; } .stagger > *:nth-child(5) { animation-delay: .12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

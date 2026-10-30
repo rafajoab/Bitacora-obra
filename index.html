@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <title>Bitácora de Obra</title>
+  <meta name="description" content="Control diario de avances de obra con fotos, clima e informes PDF. Funciona sin internet.">
+
+  <!-- PWA / iOS -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Bitácora">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Aplica el tema antes de pintar (evita parpadeo) -->
+  <script>
+    (function () {
+      var t = 'system';
+      try { t = localStorage.getItem('bo-theme') || 'system'; } catch (e) {}
+      var dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.toggle('dark', dark);
+    })();
+  </script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!-- Contenedor de vistas -->
+  <main id="view" class="min-h-full"></main>
+
+  <!-- Barra de navegación inferior tipo iOS -->
+  <nav id="tabbar" class="glass hairline-t fixed bottom-0 inset-x-0 z-40 safe-bottom">
+    <div class="grid grid-cols-5 h-[56px] max-w-xl mx-auto items-stretch">
+      <a href="#/bitacora"  data-tab="bitacora"  class="press flex flex-col items-center justify-center gap-0.5 text-[10.5px] font-medium text-label3"></a>
+      <a href="#/proyectos" data-tab="proyectos" class="press flex flex-col items-center justify-center gap-0.5 text-[10.5px] font-medium text-label3"></a>
+      <div class="flex items-start justify-center">
+        <button id="fab" aria-label="Nuevo registro" class="press -mt-5 w-[60px] h-[60px] rounded-full bg-gold text-navy shadow-lg shadow-black/20 flex items-center justify-center ring-4 ring-bg"></button>
+      </div>
+      <a href="#/informes" data-tab="informes" class="press flex flex-col items-center justify-center gap-0.5 text-[10.5px] font-medium text-label3"></a>
+      <a href="#/ajustes"  data-tab="ajustes"  class="press flex flex-col items-center justify-center gap-0.5 text-[10.5px] font-medium text-label3"></a>
+    </div>
+  </nav>
+
+  <!-- Capas: hojas modales, visor de fotos y avisos -->
+  <div id="layers"></div>
+  <div id="toasts" class="fixed top-0 inset-x-0 z-[80] flex flex-col items-center gap-2 pointer-events-none safe-top"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
